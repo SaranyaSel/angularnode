@@ -1,0 +1,14 @@
+.rootNode {
+  margin-left: 10px;
+  font-size: 18px;
+  margin: 0 5px 0 20px;
+  background: #000000;
+  color: #ffffff;
+}
+
+.add-btn {
+  cursor: pointer;
+  font-size: 18px;
+  float: right;
+  margin: 0 20px;
+}

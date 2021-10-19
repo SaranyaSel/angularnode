@@ -36,28 +36,51 @@ export class AppComponent implements OnInit {
     this.nestedDataSource.data = null;
     this.nestedDataSource.data = data;
   }
+
+  randomString(stringLength: number) {
+    let possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890-";
+    let text = "";
+    for (let i = 0; i < stringLength; i++) {
+      text += possible.charAt(Math.floor(Math.random() * possible.length));
+    }
+      return text;
+  }
+
+  createNode(node: NodeModel) {
+    node.id = this.randomString(8);// generating random string id
+    this.nestedDataSource.data.push(node);
+    this.refresh();
+  }
+
+  createChildNode(childrenNodeData) {
+    childrenNodeData.node.id = this.randomString(8);
+    childrenNodeData.currentNode.children.push(childrenNodeData.node);
+    this.refresh();
+  }
+
   onKeyUp(event: any, node: NodeModel) {
-    if (event.keyCode === 46 || event.keyCode === 8) {
+    //for delete key and backspace key
+    if (event.keyCode == 46 || event.keyCode == 8) {
       this.deleteNode(node);
     }
   }
 
-  deleteNode(nodeToBeDeleted: NodeModel) {
+  deleteNode(deleteTheNode: NodeModel) {
     let nodePlace: number;
     const deleteNode: NodeModel = this.functionService.findNode(
-      nodeToBeDeleted.id,
+      deleteTheNode.id,
       this.nestedDataSource.data
     );
     if (
       window.confirm(
-        'Are you sure you want to delete ' + nodeToBeDeleted.name + '?'
+        'Are you sure you want to delete ' + deleteTheNode.name + '?'
       )
     ) {
       if (deleteNode[0]) {
         deleteNode[0].children.splice(deleteNode[1], 1);
       } else {
         nodePlace = this.functionService.findPosition(
-          nodeToBeDeleted.id,
+          deleteTheNode.id,
           this.nestedDataSource.data
         );
         this.nestedDataSource.data.splice(nodePlace, 1);

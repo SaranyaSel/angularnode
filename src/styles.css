@@ -31,3 +31,12 @@ body {
   margin: 0;
   height: 100%;
 }
+/* .cdk-overlay-container {
+  position:relative!important;
+ } */
+.cdk-overlay-dark-backdrop {
+  background: transparent;
+}
+.mat-icon.mat-primary {
+  color:#000000;
+}

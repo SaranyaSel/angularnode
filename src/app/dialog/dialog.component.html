@@ -1,0 +1,18 @@
+<h1 mat-dialog-title>Create a new Node</h1>
+<mat-dialog-content>
+  <form class="form-horizontal" [formGroup]="createForm" autocomplete="off">
+    <mat-form-field [ngClass]="nameStyle" >
+      <input required matInput placeholder="Node Name" class="form-control" formControlName="name">
+    </mat-form-field>
+    <mat-form-field [ngClass]="typeStyle">
+      <mat-select matInput required class="form-control" formControlName="type">
+        <mat-option value="folder" aria-selected="true" selected>Folder</mat-option>
+        <mat-option value="file">File</mat-option>
+      </mat-select>
+    </mat-form-field>
+  </form>
+</mat-dialog-content>
+<mat-dialog-actions>
+  <button mat-raised-button mat-dialog-close><i class="material-icons">close</i></button>
+  <button mat-raised-button (click)="onSubmit(createForm.value.name,createForm.value.type)"><i class="material-icons">check</i></button>
+</mat-dialog-actions>
