@@ -31,4 +31,38 @@ export class AppComponent implements OnInit {
       (data) => (this.nestedDataSource.data = data)
     );
   }
+  refresh() {
+    const data = this.nestedDataSource.data;
+    this.nestedDataSource.data = null;
+    this.nestedDataSource.data = data;
+  }
+  onKeyUp(event: any, node: NodeModel) {
+    if (event.keyCode === 46 || event.keyCode === 8) {
+      this.deleteNode(node);
+    }
+  }
+
+  deleteNode(nodeToBeDeleted: NodeModel) {
+    let nodePlace: number;
+    const deleteNode: NodeModel = this.functionService.findNode(
+      nodeToBeDeleted.id,
+      this.nestedDataSource.data
+    );
+    if (
+      window.confirm(
+        'Are you sure you want to delete ' + nodeToBeDeleted.name + '?'
+      )
+    ) {
+      if (deleteNode[0]) {
+        deleteNode[0].children.splice(deleteNode[1], 1);
+      } else {
+        nodePlace = this.functionService.findPosition(
+          nodeToBeDeleted.id,
+          this.nestedDataSource.data
+        );
+        this.nestedDataSource.data.splice(nodePlace, 1);
+      }
+      this.refresh();
+    }
+  }
 }

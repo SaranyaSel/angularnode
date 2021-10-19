@@ -7,3 +7,15 @@
 .treestructure-invisible {
   display: none;
 }
+.mat-tree-node .visibleonhover,
+.mat-tree-node .visibleonhover {
+  display:none;
+}
+.mat-tree-node:hover .visibleonhover,
+.mat-tree-node:hover .visibleonhover,
+.mat-tree-node:focus-visible .visibleonhover,
+.mat-tree-node:focus-visible .visibleonhover,
+.mat-tree-node:active .visibleonhover,
+.mat-tree-node:active .visibleonhover  {
+  display:inline-block;
+}
