@@ -2,7 +2,9 @@ import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
 import { NodeModel } from './node.model';
 
-@Injectable()
+@Injectable({
+  providedIn: 'root'
+})
 export class NodeDataService {
   dataChange = new BehaviorSubject<NodeModel[]> (
     [
